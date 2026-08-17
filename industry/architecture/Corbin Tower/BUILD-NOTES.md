@@ -214,7 +214,7 @@ go run . -send stories/architecture-bulk-filler/emls
 ```
 
 Then confirm the indexer took **only** `corbin-tower-632588.md` from the signal
-folder — not `grading-key.md`, not `BUILD-NOTES.md` — and run five blind-evaluator
+folder — not `corbin-tower-632588/grading-key.md`, not `BUILD-NOTES.md` — and run five blind-evaluator
 passes, recording each as `test-results-<date>-run<N>.md`.
 
 **Demo-ready** = Query 1 scores full on recall, precision and verdict.
