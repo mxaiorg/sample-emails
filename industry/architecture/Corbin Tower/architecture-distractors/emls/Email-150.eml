@@ -1,0 +1,27 @@
+Mime-Version: 1.0
+Date: Wed, 05 Feb 2025 11:28:00 -0500
+Message-ID: <1786786143343438000.72354c69f4642441.150@localhost>
+References: <1786786143343437000.7e4b45c934a7e58b.148@localhost>
+ <1786786143343438000.57abb403bfce8260.149@localhost>
+In-Reply-To: <1786786143343438000.57abb403bfce8260.149@localhost>
+From: "Perpetua Vance" <p.vance@vaa-ia.com>
+To: "Teodoro Villanueva" <t.villanueva@vaa-ia.com>
+Cc: "Priscilla Danforth" <p.danforth@vaa-ia.com>
+Subject: Records retention review - how legal holds have to work
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Teodoro, on Desmond's point about flagged folders, that flag is the whole m=
+echanism and it needs to be built before the new schedule takes effect, not=
+ after.<br />
+<br />
+When a hold is placed on a project, nothing in that project folder may be t=
+iered, migrated, overwritten or deleted, regardless of what the retention s=
+chedule says about its age. The hold has to sit at the project folder level=
+, it has to be visible to anyone who opens the folder, and it has to surviv=
+e a tier change. A retention schedule that automation can apply to a folder=
+ under hold is worse than no schedule at all.<br />
+<br />
+I would also like the hold list reviewed quarterly by contracts rather than=
+ annually, because holds get placed and then forgotten and material stays f=
+rozen for years after a matter closes.

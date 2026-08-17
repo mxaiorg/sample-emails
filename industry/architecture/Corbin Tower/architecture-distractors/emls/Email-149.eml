@@ -1,0 +1,22 @@
+Mime-Version: 1.0
+In-Reply-To: <1786786143343437000.7e4b45c934a7e58b.148@localhost>
+From: "Desmond Achterberg" <d.achterberg@vaa-ia.com>
+To: "Teodoro Villanueva" <t.villanueva@vaa-ia.com>
+Cc: "Perpetua Vance" <p.vance@vaa-ia.com>
+Subject: RE: Firm-wide records retention review - tier audit numbers
+Date: Wed, 22 Jan 2025 14:41:00 -0500
+Message-ID: <1786786143343438000.57abb403bfce8260.149@localhost>
+References: <1786786143343437000.7e4b45c934a7e58b.148@localhost>
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Teodoro, here is the audit you asked for. Active is 41 terabytes, nearline =
+is 96 terabytes and deep is 212 terabytes. Deep costs us a fraction of the =
+others per terabyte per month, but we paid $9,400 in retrieval fees last ye=
+ar, which is most of the saving.<br />
+<br />
+My recommendation is that projects closed within the last seven years sit i=
+n nearline rather than deep, because those are the ones anyone actually ask=
+s for. Beyond seven years the retrieval rate drops to almost nothing and de=
+ep is the right home. I would also like to stop the automatic tiering job f=
+rom running on any folder that is flagged, which we cannot currently do.

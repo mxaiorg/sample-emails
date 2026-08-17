@@ -1,0 +1,28 @@
+Mime-Version: 1.0
+To: "All Staff" <allstaff@vaa-ia.com>
+Subject: Revised records retention schedule effective March 1
+Date: Wed, 19 Feb 2025 16:07:00 -0500
+Message-ID: <1786786143343438000.1a240efbb4d5dd4c.151@localhost>
+References: <1786786143343437000.7e4b45c934a7e58b.148@localhost>
+ <1786786143343438000.57abb403bfce8260.149@localhost>
+ <1786786143343438000.72354c69f4642441.150@localhost>
+In-Reply-To: <1786786143343438000.72354c69f4642441.150@localhost>
+From: "Teodoro Villanueva" <t.villanueva@vaa-ia.com>
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+The revised retention schedule is adopted and takes effect March 1. Drawing=
+s, specifications and record documents are retained permanently. Project co=
+rrespondence, meeting minutes, transmittals and submittal and ASI logs are =
+retained for fifteen years from closeout. Contract and insurance documents =
+follow the same fifteen year term. Accounting records follow the statutory =
+seven.<br />
+<br />
+Two changes to how this is enforced. Projects closed within seven years now=
+ sit in the nearline tier rather than deep, so retrieval is minutes and fre=
+e. And a legal hold flag now exists at the project folder level. If a folde=
+r carries the flag, the tiering and retention automation skips it entirely =
+and nothing in it can be deleted by anyone, including me.<br />
+<br />
+Perpetua and Priscilla maintain the hold list and it is reviewed every quar=
+ter.
