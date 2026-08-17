@@ -1,9 +1,9 @@
 # Evaluation Results — Corbin Tower 632588 Corpus vs. Grading Key
 
-**Run date:** August 17, 2026
-**Tool under test:** mxMCP `email_search` (mxMCP2 connector)
-**Corpus:** 6,195 messages (40 signal + 155 distractors + 6,000 filler)
-**Evaluator:** Claude (Cowork), scoring against `grading-key.md`
+**Run date:** August 17, 2026  
+**Tool under test:** mxMCP `email_search` (mxMCP2 connector)  
+**Corpus:** 6,195 messages (40 signal + 155 distractors + 6,000 filler)  
+**Evaluator:** Claude (Cowork), scoring against `grading-key.md`  
 
 ## Headline
 
