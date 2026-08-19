@@ -1,7 +1,9 @@
+# Overview
+
 The following is an example response to a query posed against this test corpus.
 
-Date: August 19, 2026  
-Model: Anthropic Claude Opus 5  
+**Date:** August 19, 2026  
+**Model:** Anthropic Claude Opus 5  
 
 ## Query
 > Did Marchwood ever agree in writing to stop debiting advisory fees directly from client accounts, or did the 2011 examination close with no findings? Examine the email history with the mxMCP tool.
