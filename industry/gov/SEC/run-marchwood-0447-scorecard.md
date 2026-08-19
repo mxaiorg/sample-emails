@@ -155,7 +155,7 @@ Marchwood's: the 2011 undertaking had no expiration and by its terms reached
 accounts acquired or onboarded later; in Q1 2019 the firm adopted a third-party
 billing platform and re-added a withdrawal-authorization clause in substantially
 the terms of the one removed in 2011, running to September 2023 across 431
-accounts / ~$497m, of which **138 (~$38.5m) were acquired or onboarded after June
+accounts / ~ \$497m, of which **138 (~ \$38.5m) were acquired or onboarded after June
 2, 2011 and sat squarely inside the undertaking**. The May 2011 custody procedure
 was not carried into the 2017 manual; the firm's own 2017 move off its legacy
 archiving platform lost the correspondence; the CCO who gave the undertaking left

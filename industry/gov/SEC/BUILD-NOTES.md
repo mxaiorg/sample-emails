@@ -43,7 +43,7 @@ during the build.
 4. **The claim.** November 12, 2024 — in AP File No. **3-21987** the respondent
    moves for summary disposition on the Division's own production, which
    consists of a summary row coded C-2 and a two-paragraph closing letter, and
-   gives notice of an Equal Access to Justice Act claim. **$4,300,000** of relief
+   gives notice of an Equal Access to Justice Act claim. **\$4,300,000** of relief
    is at risk on the motion.
 5. **The archive produces it — plus the precedent.** January 14, 2025 — the mail
    journal archive, never migrated and with its retention clock frozen since the
@@ -54,8 +54,8 @@ during the build.
    examination covering an eleven-day exposure.
 6. **The claim collapses.** February 21, 2025 — motion, EAJA notice and forum
    challenge all withdrawn. March 14, 2025 — settled order: censure, cease and
-   desist, disgorgement $1,412,000 + prejudgment interest $137,000 + civil
-   penalty $601,000 = **$2,150,000**.
+   desist, disgorgement \$1,412,000 + prejudgment interest \$137,000 + civil
+   penalty \$601,000 = **\$2,150,000**.
 
 **Trap identifiers.** Legacy examination number **2011-0447**, which identifies
 **two** unrelated examinations because each regional office ran an independent
@@ -196,10 +196,10 @@ are the class of defect that falsifies a demo:
 | 2 | The instruction to Form ADV Item 9 permits a "No" answer where custody arises solely from fee deduction, so the Section 207 count failed as pleaded. | Follows from #1; the OIP and settled order now say so expressly. |
 | 3 | Item 9(A)/9(B) miscited throughout — 9.B is about *related persons*, and Marchwood's custodian is unaffiliated. | Restated as Items 9.A.(1)(a) and 9.A.(1)(b) in six documents. |
 | 4 | The EAJA application was filed the same day as the dispositive motion. Rule 44 permits an application only once the applicant has prevailed. | Converted to a **notice of intent** to seek fees on prevailing, in the motion, in three emails and in the settled order. |
-| 5 | The $2,150,000 was quoted as the Division's demand nine weeks *before* the archive search that identified the 138-account cohort defining it. | Pre-discovery demand raised to **$4,300,000**; the settled figure now reads as the negotiated reduction it is, and the settled order says so. |
+| 5 | The \$2,150,000 was quoted as the Division's demand nine weeks *before* the archive search that identified the 138-account cohort defining it. | Pre-discovery demand raised to **\$4,300,000**; the settled figure now reads as the negotiated reduction it is, and the settled order says so. |
 | 6 | A calendar-2010 surprise examination cannot be performed in mid-2011. | The undertaking now engages the accountant for **calendar year 2011** and states that the 2010 examination cannot be reconstructed. |
 | 7 | Nobody pulled the public Form ADV-E filing history, which would have shown filings for 2011 and 2013 and none after. | Added to the referral memorandum and to the OGC assessment, with the correct caveat that it proves the firm hired an accountant, not that the staff required it. |
-| 8 | The Hollis Grange book held $37.4m in 2013, while the whole post-2011 cohort held $38.5m in 2023. | 2013 figure reduced to $12.3m. |
+| 8 | The Hollis Grange book held \$37.4m in 2013, while the whole post-2011 cohort held \$38.5m in 2023. | 2013 figure reduced to \$12.3m. |
 | 9 | "Eleven weeks" between the motion and the archive search was nine. | Corrected. |
 | 10 | The C-4 → C-2 argument claimed C-2 means "nothing was found," but the same code set has C-1 for that. | Restated: the mapping does not invert a meaning, it deletes the one fact the next examiner needs. |
 | 11 | The migration notice never explained why the closing letter survived and the deficiency letter did not. | Closing letters were indexed by the EXAMTRAC closing workflow; letters issued while an examination was open were indexed only by hand. |
@@ -307,6 +307,6 @@ passes, recording each as `test-results-<date>-run<N>.md`.
    a surprise examination covering an eleven-day exposure. That is the beat that
    ends the argument.
 
-The number to say out loud at the end is **$2,150,000**, and the sentence to say
+The number to say out loud at the end is **\$2,150,000**, and the sentence to say
 with it is Camille Ostrowski's in Email-40: the case was won by two letters that
 were in neither party's document system and in the email archive the whole time.
