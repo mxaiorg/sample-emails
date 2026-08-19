@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mxMCP Retrieval Benchmark — Marchwood 2011-0447</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header .case-info {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .alert-banner {
+            background: #dc3545;
+            color: white;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 18px 30px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: white;
+            color: #2a5298;
+            border-bottom: 3px solid #2a5298;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .metric-card.red {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .metric-card.green {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .metric-card.yellow {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .metric-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .info-card.strength {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .info-card.weakness {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        .info-card.urgent {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .info-card p, .info-card ul {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+            position: relative;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+
+        .timeline-event {
+            color: #333;
+            font-size: 15px;
+        }
+
+        .contact-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+
+        .contact-role {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .contact-details {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .document-link {
+            display: block;
+            background: #e9ecef;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #2a5298;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .document-link:hover {
+            background: #2a5298;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .document-link::before {
+            content: "📄 ";
+            margin-right: 10px;
+        }
+
+        .document-link.highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .action-item {
+            background: white;
+            border: 2px solid #dc3545;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-item::before {
+            content: "⚠️";
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .priority-high {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .priority-medium {
+            border-color: #ffc107;
+            background: #fffbf0;
+        }
+
+        .priority-low {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .layout-toggle {
+            display: block;
+            padding: 12px 20px;
+            background: #e9ecef;
+            color: #2a5298;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .layout-toggle:hover {
+            background: #dfe3e6;
+            text-decoration: underline;
+        }
+
+         
+        .print-cover {
+            display: none;
+            padding: 26px 30px;
+            border-bottom: 2px solid #dee2e6;
+            background: #ffffff;
+        }
+
+        .print-cover .print-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a2e;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .print-cover .print-subtitle {
+            font-size: 12px;
+            color: #495057;
+            line-height: 1.5;
+        }
+
+        .print-cover .print-meta {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #6c757d;
+        }
+
+         
+        body.continuous {
+            background: white;
+        }
+
+        body.continuous .container {
+            box-shadow: none;
+        }
+
+        body.continuous .tabs {
+            display: block;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            padding: 12px 20px;
+        }
+
+        body.continuous .tabs .toc-title {
+            display: block;
+            font-weight: 800;
+            color: #2a5298;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        body.continuous .tabs a.toc-link {
+            display: inline-block;
+            margin: 6px 10px 0 0;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: white;
+            border: 1px solid #dee2e6;
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        body.continuous .tabs a.toc-link:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        body.continuous .tab-content {
+            display: block;
+            margin-top: 22px;
+        }
+
+        body.continuous .tab-content.active {
+            animation: none;
+        }
+
+        body.continuous .section-title {
+            scroll-margin-top: 90px;
+        }
+
+         
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+
+            .container {
+                max-width: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+            }
+
+            .layout-toggle {
+                display: none !important;
+            }
+
+             
+            body {
+                font-size: 11pt !important;
+                line-height: 1.35 !important;
+                color: #111 !important;
+            }
+
+            .header {
+                display: none !important;
+            }
+
+            .print-cover {
+                display: block !important;
+                page-break-after: always;
+            }
+
+            .content {
+                padding: 0 !important;
+            }
+
+            .section-title {
+                font-size: 18pt !important;
+                margin-bottom: 10px !important;
+                padding-bottom: 8px !important;
+            }
+
+            .metric-label {
+                font-size: 10pt !important;
+            }
+
+            .metric-value {
+                font-size: 18pt !important;
+            }
+
+            .timeline-item,
+            .info-card,
+            .contact-card,
+            .action-item {
+                page-break-inside: avoid;
+            }
+
+
+             
+            .tabs {
+                display: none !important;
+            }
+            .tabs .toc-title,
+            .tabs .toc-link {
+                display: none !important;
+            }
+
+            .tab-content {
+                display: block !important;
+            }
+
+            .tab-content.active {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>mxMCP Retrieval Benchmark — Marchwood 2011-0447</h1>
+        <div class="case-info">
+            August 19, 2026 · Adversarial evaluation of <strong>mxMCP2.email_search</strong><br>Result: <strong>24 / 24 — passed on all axes</strong> · 4 queries · 8 searches · ~6,000-message corpus · 0 trap citations
+        </div>
+        <div class="case-info">Generated with the mxMCP Dashboard MCP v2</div>
+    </div>
+    <a href="#" id="layoutToggle" class="layout-toggle">Switch to Continuous View (for printing)</a>
+    <div class="print-cover" id="printCover">
+        <div class="print-title">mxMCP Retrieval Benchmark — Marchwood 2011-0447</div>
+        <div class="print-subtitle">Run 3 · August 19, 2026 · Adversarial evaluation of <strong>mxMCP2.email_search</strong><br>Result: <strong>24 / 24 — passed on all axes</strong> · 4 queries · 8 searches · ~6,000-message corpus · 0 trap citations</div>
+        <div class="print-meta">Printed: <span id="printDate">8/19/2026, 4:10:01 PM</span></div>
+    </div>
+
+    
+    <div class="alert-banner">
+        Operational dependency identified: retrieval quality collapses 
+when the connector's Pin parameter is omitted. One control search run 
+without it returned 50 messages of which 48 were bulk filler. Recommend 
+enforcing Pin in agent configuration rather than leaving it to model 
+discretion.
+    </div>
+    
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('overview', event)">Overview</button>
+        <button class="tab" onclick="showTab('timeline', event)">Timeline</button>
+        <button class="tab" onclick="showTab('contacts', event)">Contacts</button>
+        <button class="tab" onclick="showTab('emails', event)">Emails</button>
+        <button class="tab" onclick="showTab('documents', event)">Documents</button>
+        <button class="tab" onclick="showTab('next-steps', event)">Next Steps</button>
+    </div>
+
+    <div class="content">
+        
+        <div id="overview" class="tab-content active">
+            
+            <div class="metric-grid">
+                
+                <div class="metric-card green">
+                    <div class="metric-label">Overall Score</div>
+                    <div class="metric-value">24 / 24</div>
+                </div>
+                
+                <div class="metric-card green">
+                    <div class="metric-label">Queries Passed</div>
+                    <div class="metric-value">4 / 4</div>
+                </div>
+                
+                <div class="metric-card green">
+                    <div class="metric-label">Trap Citations</div>
+                    <div class="metric-value">0</div>
+                </div>
+                
+                <div class="metric-card green">
+                    <div class="metric-label">Needle Rank, Search 1</div>
+                    <div class="metric-value">#4</div>
+                </div>
+                
+                <div class="metric-card default">
+                    <div class="metric-label">Corpus Size</div>
+                    <div class="metric-value">~6,000 msgs</div>
+                </div>
+                
+                <div class="metric-card yellow">
+                    <div class="metric-label">Decoys Planted</div>
+                    <div class="metric-value">155</div>
+                </div>
+                
+                <div class="metric-card default">
+                    <div class="metric-label">Searches Issued</div>
+                    <div class="metric-value">8</div>
+                </div>
+                
+                <div class="metric-card yellow">
+                    <div class="metric-label">Bonus Items Missed</div>
+                    <div class="metric-value">2</div>
+                </div>
+                
+            </div>
+            
+
+            
+            <div class="section">
+                <h2 class="section-title">Scoring by Axis</h2>
+                
+                <div class="info-grid">
+                    
+                    <div class="info-card strength">
+                        <h3>Recall — 8 / 8</h3>
+                        <p>Every non-negotiable document was surfaced on
+ all four queries, including the signed PDF attachment that carries the 
+operative language.</p>
+                        
+                        <ul>
+                            
+                            <li>Q1: the June 2, 2011 undertaking, with Marchwood_Undertaking_Letter_2011-06-02.pdf intact</li>
+                            
+                            <li>Q2: what the case system actually holds, plus both 2016 migration defects</li>
+                            
+                            <li>Q3: all 12 messages in the Philadelphia examination sequence</li>
+                            
+                            <li>Q4: the post-mortem message — the only one stating both halves of causation</li>
+                            
+                        </ul>
+                        
+                    </div>
+                    
+                    <div class="info-card strength">
+                        <h3>Precision — 8 / 8</h3>
+                        <p>Zero decoys were cited across all four answers. Several ranked inside the top ten and were correctly held out.</p>
+                        
+                        <ul>
+                            
+                            <li>A near-identical undertaking letter 
+dated two days earlier at a different adviser — which expired, and would
+ have inverted the verdict</li>
+                            
+                            <li>A second examination carrying the identical file number at another regional office</li>
+                            
+                            <li>A matter where the same archive search correctly found nothing</li>
+                            
+                            <li>Four unrelated registrants sharing the subject's name</li>
+                            
+                        </ul>
+                        
+                    </div>
+                    
+                    <div class="info-card strength">
+                        <h3>Verdict — 8 / 8</h3>
+                        <p>All four natural-language answers were 
+correct, and each explained why the organisation's system of record 
+shows the opposite. That second half is what the benchmark exists to 
+test — a retrieval tool that finds the document but cannot explain the 
+contradiction does not close the argument.</p>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">What the Benchmark Tests</h2>
+                
+                <div class="info-grid">
+                    
+                    <div class="info-card default">
+                        <h3>The Premise</h3>
+                        <p>The corpus models an enforcement matter in 
+which a decisive written commitment was made in 2011, lost from both 
+parties' document systems in a 2016 platform migration, and became the 
+difference between a <strong>$4.3M</strong> action collapsing and a <strong>$2.15M</strong> settlement fourteen years later. Every person who negotiated it had left. The email archive was the only surviving witness.</p>
+                        
+                    </div>
+                    
+                    <div class="info-card default">
+                        <h3>Why the Decoys Matter More Than the Volume</h3>
+                        <p>Bulk filler makes the haystack a haystack, 
+but it does not compete for top-k results. The evaluation is won or lost
+ on the ~155 hand-built hard negatives: same document numbers, same 
+vocabulary, wrong entity. Finding the needle in a pile of unrelated mail
+ proves very little; finding it while declining four near-identical 
+look-alikes is the actual claim.</p>
+                        
+                    </div>
+                    
+                    <div class="info-card default">
+                        <h3>The Three Scoring Axes</h3>
+                        <p>Each query is scored 0–2 on recall (did it 
+find the right documents), precision (did it avoid the decoys), and 
+verdict (was the final answer correct). Four queries × three axes × two 
+points = 24 available. A demo passes only when the primary query scores 
+full on all three.</p>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Key Findings</h2>
+                
+                <div class="info-grid">
+                    
+                    <div class="info-card strength">
+                        <h3>The disambiguation disclosure is load-bearing</h3>
+                        <p>Two entirely separate matters share a file number by design. On the bare-number query the connector volunteered the ambiguity <em>before any answer was drafted</em>
+ — naming both counterparties and warning that the identifier is unique 
+only within the office that issued it. An agent that ignores that 
+disclosure silently merges the two matters and fails precision. This 
+behaviour, not ranking quality, is what carried the hardest query.</p>
+                        
+                    </div>
+                    
+                    <div class="info-card strength">
+                        <h3>A recovery channel prevented a recall miss</h3>
+                        <p>One message in the target sequence never ranked into any result set across all eight searches. It was named in the connector's <code>missingRelated</code>
+ field and retrieved directly by identifier. Without that channel the 
+third query would have returned 11 of 12 documents and scored partial on
+ recall.</p>
+                        
+                    </div>
+                    
+                    <div class="info-card weakness">
+                        <h3>Retrieval degrades sharply without identifier pinning</h3>
+                        <p>A control search was deliberately issued without the <code>Pin</code>
+ parameter. It returned 50 messages, of which 48 were near-identical 
+bulk correspondence; the two relevant results survived only because the 
+date filter happened to be narrow. The same question with <code>Pin</code> set returns the answer at rank 1.</p>
+                        
+                    </div>
+                    
+                    <div class="info-card weakness">
+                        <h3>Transport size limits can truncate evidence</h3>
+                        <p>On two searches the connector dropped 
+attachment text or reduced messages to header-only stubs to fit response
+ size limits, disclosing each truncation explicitly. No scored item was 
+affected in this run, but on a query whose answer depended on a 
+truncated body, a second fetch would have been required.</p>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+        
+        <div id="timeline" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">Evidence Timeline Reconstructed by the Connector</h2>
+
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 7, 2011</div>
+                        <div class="timeline-event">
+                            <strong>Examination opened</strong>
+                            <br>
+                            Notice of examination 2011-0447 and initial 
+document request issued to the registrant by the Philadelphia Regional 
+Office.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 18, 2011</div>
+                        <div class="timeline-event">
+                            <strong>The finding takes shape</strong>
+                            <br>
+                            Preliminary custody analysis identifies 
+standing fee-debit authority across 214 of 1,140 accounts holding 
+~$198M, and concludes the regulatory exception is unavailable because 
+the authority is not confined to the advisory fee.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 20, 2011</div>
+                        <div class="timeline-event">
+                            <strong>Deficiency letter — six items</strong>
+                            <br>
+                            Item 4 is custody. The registrant is 
+required to respond in writing describing corrective action on each 
+item.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">May 26, 2011</div>
+                        <div class="timeline-event">
+                            <strong>The causation seed</strong>
+                            <br>
+                            Internal staff message argues against a 
+remediation scoped to the examined year: the firm grows by acquisition, 
+so the undertaking must have no end date. 'If the practice comes back 
+after this compliance officer leaves, the record will show we closed 
+with no findings.'
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 2, 2011</div>
+                        <div class="timeline-event">
+                            <strong>★ THE NEEDLE — the written undertaking</strong>
+                            <br>
+                            The registrant's chief compliance officer 
+accepts Item 4, confirms all 214 accounts moved to an unaffiliated 
+qualified custodian, discontinues the practice firm-wide, and undertakes
+ to apply the same treatment to accounts acquired or onboarded in future
+ — 'not limited to calendar year 2010 or to any other period and given 
+without an expiration date.'
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 7, 2011</div>
+                        <div class="timeline-event">
+                            <strong>Closed on the undertaking — disposition C-4</strong>
+                            <br>
+                            Examiner recommends closing under the legacy
+ code for 'closed on registrant undertaking', explicitly not the code 
+for 'closed, no further action', and sets a follow-up flag so the 
+commitment survives the people who negotiated it.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 28, 2011</div>
+                        <div class="timeline-event">
+                            <strong>Closing letter issued</strong>
+                            <br>
+                            'Based on the corrective actions described 
+in your response.' This becomes the only 2011 document to survive into 
+the modern case system — and, read alone, the respondent's best 
+evidence.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 21, 2013</div>
+                        <div class="timeline-event">
+                            <strong>★ THE PRECEDENT — performed unprompted</strong>
+                            <br>
+                            With no examination open and no request from
+ the staff, the registrant applies the 2011 undertaking to 61 accounts 
+acquired from another adviser, revokes 14 inherited authorisations, and 
+pays for a surprise examination covering an eleven-day exposure. A party
+ that did not understand itself to be bound does not do this.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 12, 2016</div>
+                        <div class="timeline-event">
+                            <strong>Institutional memory leaves</strong>
+                            <br>
+                            The compliance officer who gave the undertaking departs; a successor takes over on March 1.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 11, 2016</div>
+                        <div class="timeline-event">
+                            <strong>Platform migration — the records defect</strong>
+                            <br>
+                            For examinations closed before January 1, 
+2014, only summary records and indexed final letters migrate. 
+Correspondence, work papers, call memoranda and follow-up flags were out
+ of scope. Population affected: 41,208 examinations.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 14, 2016</div>
+                        <div class="timeline-event">
+                            <strong>The code-mapping defect — and the ticket that was closed</strong>
+                            <br>
+                            The legacy 'closed on undertaking' code had 
+no counterpart in the new system and was mapped onto 'closed, no further
+ action' — deleting the one field that would have told the next examiner
+ something had been promised. Raised at the time, logged, and closed 
+'low impact, will not fix.'
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 15, 2019</div>
+                        <div class="timeline-event">
+                            <strong>The risk model behaves correctly on wrong inputs</strong>
+                            <br>
+                            The firm scores in the bottom quartile and 
+falls off the following year's examination candidate list — correctly, 
+on inputs stating the last examination closed with no further action and
+ no open items of record.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Q1 2019 – September 2023</div>
+                        <div class="timeline-event">
+                            <strong>The practice resumes</strong>
+                            <br>
+                            A third-party billing platform and a 
+re-drafted authorisation clause reinstate the arrangement across 431 
+accounts holding ~$497M. Of these, 138 were acquired or onboarded after 
+June 2, 2011 and sat squarely inside the undertaking.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 2, 2023</div>
+                        <div class="timeline-event">
+                            <strong>A tip arrives</strong>
+                            <br>
+                            A former employee reports the practice and 
+states she was told the regulator had reviewed it. Nobody had known 
+until this point.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 12, 2024</div>
+                        <div class="timeline-event">
+                            <strong>The motion that nearly won</strong>
+                            <br>
+                            Respondent moves for summary disposition on 
+the Division's own production, plus notice of a fee claim. $4,300,000 at
+ issue. The motion was not frivolous — the produced file genuinely 
+contained nothing but a summary record and a closing letter.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 14, 2025</div>
+                        <div class="timeline-event">
+                            <strong>The product moment — archive search</strong>
+                            <br>
+                            Four mailboxes, three years, full text 
+including attachments. 241,700 messages matched the filters; 38 matched 
+the registrant or examination number; twelve were the 2011 sequence and 
+one was from October 2013, with attachments intact. Run in a day, after 
+nine weeks of searching the one place the documents were guaranteed not 
+to be.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 21, 2025</div>
+                        <div class="timeline-event">
+                            <strong>The claim collapses</strong>
+                            <br>
+                            Respondent withdraws the motion, the fee 
+notice and its forum challenge, all in full and with prejudice, and 
+submits an offer of settlement.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 14, 2025</div>
+                        <div class="timeline-event">
+                            <strong>Settled — $2,150,000</strong>
+                            <br>
+                            Censure, cease-and-desist, and $1,412,000 
+disgorgement + $137,000 interest + $601,000 penalty. Disgorgement is 
+measured against the 138 accounts inside the undertaking rather than the
+ full population.
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="contacts" class="tab-content">
+            
+            <div class="section">
+                <h2 class="section-title">Signal — Regulator, Examinations Side</h2>
+                <div class="info-grid">
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Rosalind Achterberg</div>
+                        <div class="contact-role">Branch Chief, Investment Adviser Examinations</div>
+                        <div class="contact-details">
+                            rosalind.achterberg@sec.gov<br>Issued the deficiency letter and the closing letter. Recipient of the 2013 unprompted performance letter.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Cited Q1–Q3</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Desmond Whitlatch</div>
+                        <div class="contact-role">Senior Examiner</div>
+                        <div class="contact-details">
+                            desmond.whitlatch@sec.gov<br>Addressee of the needle. Author of the causation seed and of the C-4 closing recommendation.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Cited Q1–Q4</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Priya Raghunathan</div>
+                        <div class="contact-role">Examiner</div>
+                        <div class="contact-details">
+                            priya.raghunathan@sec.gov<br>Wrote the preliminary custody analysis, and raised the code-mapping defect at migration.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Cited Q1, Q2, Q4</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Yolanda Bricenio</div>
+                        <div class="contact-role">Branch Chief, Division of Examinations</div>
+                        <div class="contact-details">
+                            yolanda.bricenio@sec.gov<br>Author of the 
+single most important present-day message: what the case system actually
+ holds, and why its silence is not evidence.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Q2 primary</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Signal — Regulator, Enforcement and Records</h2>
+                <div class="info-grid">
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Camille Ostrowski</div>
+                        <div class="contact-role">Assistant Director, Division of Enforcement</div>
+                        <div class="contact-details">
+                            camille.ostrowski@sec.gov<br>Author of the post-mortem — the only message stating both halves of the causation answer.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Q4 non-negotiable</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Terrence Aubuchon</div>
+                        <div class="contact-role">Senior Counsel, Division of Enforcement</div>
+                        <div class="contact-details">
+                            terrence.aubuchon@sec.gov<br>Quoted the undertaking verbatim on discovery, served the supplemental production, filed the opposition.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Cited Q1, Q3</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Marcus Ellenbogen</div>
+                        <div class="contact-role">Office of Information Technology</div>
+                        <div class="contact-details">
+                            marcus.ellenbogen@sec.gov<br>Owner of the migration scope notice and of the change ticket closed 'will not fix'. Ran the archive search.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Cited Q1, Q2, Q4</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Gretchen Sallenave</div>
+                        <div class="contact-role">Associate General Counsel</div>
+                        <div class="contact-details">
+                            gretchen.sallenave@sec.gov<br>Assessed the motion as strong on the record as it then stood, and directed that every possible repository be exhausted first.
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Signal — The Registrant and Its Counsel</h2>
+                <div class="info-grid">
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Marguerite Vasseur-Kyle</div>
+                        <div class="contact-role">Chief Compliance Officer (2009 – Feb 2016)</div>
+                        <div class="contact-details">
+                            m.vasseurkyle@marchwoodam.com<br><strong>Author of the needle.</strong> Also authored the 2013 precedent letter. Her departure in February 2016 is one half of the causation answer.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-success">Author of the needle</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Alistair Penhaligon</div>
+                        <div class="contact-role">Managing Member</div>
+                        <div class="contact-details">
+                            a.penhaligon@marchwoodam.com<br>Co-signatory of the undertaking letter.
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Renata Sczerbiak</div>
+                        <div class="contact-role">Chief Compliance Officer (from Mar 2016)</div>
+                        <div class="contact-details">
+                            r.sczerbiak@marchwoodam.com<br>Told on arrival that the practice had been examined and cleared; could produce nothing, and neither could the regulator.
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">J. Roland Ballentine</div>
+                        <div class="contact-role">Counsel for Respondent, 2024–25</div>
+                        <div class="contact-details">
+                            rballentine@ballentineroe.com<br>Filed the motion for summary disposition, then withdrew it in full after the production.
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Decoys — Correctly Excluded From Every Answer</h2>
+                <div class="info-grid">
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Vandergrift Rowe Investment Counsel</div>
+                        <div class="contact-role">The near-miss twin — examination 2011-0463</div>
+                        <div class="contact-details">
+                            Same branch chief, same examiner, custody at
+ Item 4, and an undertaking letter dated two days earlier in almost the 
+same words — <strong>which expired by its terms on December 31, 2012.</strong> Citing it as the undertaking inverts the verdict.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-danger">Trap — ranked top 10, excluded</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Braxton-Ferrer Advisors LLC</div>
+                        <div class="contact-role">The other 2011-0447 — Denver office</div>
+                        <div class="contact-details">
+                            An advertising and performance-presentation 
+examination carrying the identical file number, because legacy 
+four-digit series ran independently per office and were never 
+renumbered.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-danger">Trap — flagged, not merged</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Ottoway Trask</div>
+                        <div class="contact-role">The inverted case — examination 2012-0331</div>
+                        <div class="contact-details">
+                            Where the same archive search correctly 
+found nothing, and the disposition code positively indicates a clean 
+file. Citing it would have supported the opposite conclusion.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-danger">Trap — ranked top 10, excluded</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-name">Four unrelated Marchwood registrants</div>
+                        <div class="contact-role">Name collisions</div>
+                        <div class="contact-details">
+                            Marchwood Capital Partners LP, Marchwood 
+Wealth Advisors, Marchwood Securities LLC, Marchwood Fiduciary Services 
+LLC — none affiliated with the subject or with each other.
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            
+                            <span class="badge badge-danger">Trap — excluded</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <div id="emails" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">Documents Retrieved Across the Eight Searches</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 7, 2011 9:12 AM</div>
+                        <div class="timeline-event">
+                            <strong>Examination 2011-0447 — Notice and Initial Document Request</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Rosalind Achterberg (SEC)<br>
+                                To: Alistair Penhaligon (Marchwood)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">Opens the examination. Items 9 and 11 of the request list are aimed at fee billing and withdrawal authority. <em>Recovered on the scoped Query 3 pass.</em></p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 18, 2011 3:22 PM</div>
+                        <div class="timeline-event">
+                            <strong>2011-0447 — preliminary custody analysis, direct fee-debit authority</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Priya Raghunathan (SEC)<br>
+                                To: Desmond Whitlatch, Rosalind Achterberg (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">214 of 1,140 accounts, ~$198M. 'The authority conferred, however, is not limited to the fee.' <em>Item 4 is the one with teeth.</em></p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 20, 2011 2:08 PM</div>
+                        <div class="timeline-event">
+                            <strong>Examination 2011-0447 — Deficiency Letter</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Rosalind Achterberg (SEC)<br>
+                                To: Alistair Penhaligon (Marchwood)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">Six deficiencies. Item 4 is custody. <strong>Required on Queries 1 and 2</strong> — this is the document whose existence the respondent's motion denied.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">May 24, 2011 11:47 AM</div>
+                        <div class="timeline-event">
+                            <strong>RE: interim response to Items 1, 2, 3, 5 and 6</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Desmond Whitlatch (SEC)<br>
+                                To: Marguerite Vasseur-Kyle (Marchwood)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">The staff's position stated plainly before the call. <em>This
+ message never ranked into any result set across eight searches — it was
+ recovered through the connector's missingRelated channel.</em></p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">May 26, 2011 3:19 PM</div>
+                        <div class="timeline-event">
+                            <strong>2011-0447 — what we should ask for on Item 4</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Desmond Whitlatch (SEC)<br>
+                                To: Rosalind Achterberg, Nathaniel Okuma (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'A
+ remediation scoped to calendar 2010 puts us back here in three years 
+with the same finding on different accounts... If the practice comes 
+back after this compliance officer leaves, the record will show we 
+closed with no findings.' <strong>The causation seed.</strong></p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 2, 2011 10:41 AM</div>
+                        <div class="timeline-event">
+                            <strong>★ Item 4 — corrective action and undertaking</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Marguerite Vasseur-Kyle (Marchwood)<br>
+                                To: Desmond Whitlatch (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;"><strong>THE NEEDLE.</strong>
+ 'This undertaking is not limited to calendar year 2010 or to any other 
+period and is given without an expiration date.' Retrieved at <strong>rank 4 on the first search</strong>, with the signed PDF attachment intact.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 7, 2011 9:26 AM</div>
+                        <div class="timeline-event">
+                            <strong>2011-0447 — recommend closing on the undertaking, disposition C-4</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Desmond Whitlatch (SEC)<br>
+                                To: Rosalind Achterberg, Nathaniel Okuma (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'The
+ disposition code should be C-4... and not C-2. The difference matters.'
+ Establishes that the record was correct when written — the defect came 
+later.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 28, 2011 11:58 AM</div>
+                        <div class="timeline-event">
+                            <strong>Examination 2011-0447 — Closing Letter</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Rosalind Achterberg (SEC)<br>
+                                To: Alistair Penhaligon (Marchwood)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'Based
+ on the corrective actions described in your response.' The only 2011 
+document to survive the migration — and, read alone, the respondent's 
+strongest evidence.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 21, 2013 1:37 PM</div>
+                        <div class="timeline-event">
+                            <strong>★ Application of the 2011 undertaking to the acquired accounts</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Marguerite Vasseur-Kyle (Marchwood)<br>
+                                To: Rosalind Achterberg (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;"><strong>THE PRECEDENT.</strong>
+ 'Nobody has asked us for this and there is no examination open.' 61 
+accounts, 14 authorisations revoked, a surprise examination paid for 
+over an eleven-day exposure.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 11, 2016 9:33 AM</div>
+                        <div class="timeline-event">
+                            <strong>EXAMTRAC decommissioning — SENTRY cutover is complete</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Marcus Ellenbogen (SEC OIT)<br>
+                                To: Examination staff, Philadelphia
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'Do
+ not treat the absence of a document in SENTRY as evidence that the 
+document was never created.' Population affected: 41,208 examinations.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 14, 2016 10:57 AM</div>
+                        <div class="timeline-event">
+                            <strong>RE: SENTRY cutover — the disposition code mapping</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Priya Raghunathan (SEC)<br>
+                                To: Marcus Ellenbogen (SEC OIT)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'Mapping
+ C-4 onto it does not lose a label, it deletes the one fact the next 
+examiner needs, and it does so on exactly the examinations whose 
+correspondence also did not migrate.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 15, 2019 11:24 AM</div>
+                        <div class="timeline-event">
+                            <strong>FY2020 examination candidate list — Philadelphia</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Nathaniel Okuma (SEC)<br>
+                                To: Yolanda Bricenio (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'I
+ have a vague memory that we had a custody issue with them years ago, 
+but the record is a closing letter and a C-2, so either I am thinking of
+ a different firm or whatever it was got resolved.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 12, 2024 5:11 PM</div>
+                        <div class="timeline-event">
+                            <strong>Respondent's motion for summary disposition</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: J. Roland Ballentine (Ballentine Roe LLP)<br>
+                                To: Terrence Aubuchon (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'If
+ the Division has a document showing that something was in fact required
+ of my client in 2011, produce it.' $4,300,000 at issue, plus a $186,300
+ fee claim.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 15, 2024 4:44 PM</div>
+                        <div class="timeline-event">
+                            <strong>RE: Urgent — we need the complete 2011 examination file</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Yolanda Bricenio (SEC)<br>
+                                To: Camille Ostrowski (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;"><strong>Query 2 primary.</strong> 'The record we produced to Respondent is not evidence that nothing happened. It is evidence of what survived a migration.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 14, 2025 1:28 PM</div>
+                        <div class="timeline-event">
+                            <strong>Journal archive search — results</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Marcus Ellenbogen (SEC OIT)<br>
+                                To: Han-Wei Loh, Camille Ostrowski, Terrence Aubuchon (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">241,700
+ messages matched the filters; 38 matched the registrant or examination 
+number; twelve are the 2011 sequence, one is from October 2013. 'Read 
+the June 2 letter first.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 16, 2025 10:53 AM</div>
+                        <div class="timeline-event">
+                            <strong>The June 2 letter</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Terrence Aubuchon (SEC)<br>
+                                To: Camille Ostrowski, Gretchen Sallenave (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">The undertaking quoted verbatim. 'Our closing letter of June 28 is not a clearance. It is the acceptance of this letter.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 3, 2025 2:41 PM</div>
+                        <div class="timeline-event">
+                            <strong>Opposition to the motion for summary disposition — filed</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Terrence Aubuchon (SEC)<br>
+                                To: Camille Ostrowski, Gretchen Sallenave (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">'A
+ party that did not understand itself to be bound does not do this.' 
+Note: describes the sequence as eleven documents where the index 
+correctly lists twelve — a deliberate in-world miscount, caught and 
+reported.</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 21, 2025 11:07 AM</div>
+                        <div class="timeline-event">
+                            <strong>RE: supplemental production</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: J. Roland Ballentine (Ballentine Roe LLP)<br>
+                                To: Terrence Aubuchon (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;">Motion,
+ fee notice and forum challenge all withdrawn in full and with 
+prejudice. 'It is not a basis for continuing to litigate against 
+documents my client's own officer signed.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 14, 2025 3:33 PM</div>
+                        <div class="timeline-event">
+                            <strong>★ Settled order entered, and what this cost us to find out</strong><br>
+                            <span style="font-size: 13px; color: #6c757d;">
+                                From: Camille Ostrowski (SEC)<br>
+                                To: Gretchen Sallenave, Yolanda Bricenio, Han-Wei Loh (SEC)
+                            </span>
+                            
+                            <p style="margin-top: 10px; color: #555;"><strong>Query 4 non-negotiable.</strong> $2,150,000 total. 'We had been looking for nine weeks in the one place the documents were guaranteed not to be.'</p>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="documents" class="tab-content">
+            
+            <div class="section">
+                <h2 class="section-title">The Needle and Its Corroboration</h2>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Undertaking_Letter_2011-06-02.pdf" class="document-link highlight" target="_blank">
+                    Marchwood_Undertaking_Letter_2011-06-02.pdf — the signed undertaking, 'without an expiration date'
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Hollis_Grange_Undertaking_Application_2013-10-21.pdf" class="document-link highlight" target="_blank">
+                    
+Marchwood_Hollis_Grange_Undertaking_Application_2013-10-21.pdf — the 
+firm performing the undertaking unprompted
+                </a>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">The 2011 Examination Record</h2>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Exam_2011-0447_Document_Request_List.pdf" class="document-link" target="_blank">
+                    Exam_2011-0447_Document_Request_List.pdf — initial request, items aimed at fee billing
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Exam_2011-0447_Preliminary_Findings_Memo.pdf" class="document-link" target="_blank">
+                    Exam_2011-0447_Preliminary_Findings_Memo.pdf — 214 accounts, ~$198M, exception unavailable
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Deficiency_Letter_2011-04-20.pdf" class="document-link" target="_blank">
+                    Marchwood_Deficiency_Letter_2011-04-20.pdf — six items, Item 4 custody
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Interim_Response_2011-05-19.pdf" class="document-link" target="_blank">
+                    Marchwood_Interim_Response_2011-05-19.pdf — five items resolved, Item 4 disputed
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Exam_2011-0447_Call_Memorandum_2011-06-01.pdf" class="document-link" target="_blank">
+                    Exam_2011-0447_Call_Memorandum_2011-06-01.pdf — the three elements agreed
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Closing_Letter_2011-06-28.pdf" class="document-link" target="_blank">
+                    Marchwood_Closing_Letter_2011-06-28.pdf — 'based on the corrective actions described in your response'
+                </a>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">System-of-Record Evidence</h2>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/SENTRY_Migration_Scope_Notice_2016-03-11.pdf" class="document-link highlight" target="_blank">
+                    SENTRY_Migration_Scope_Notice_2016-03-11.pdf — what migrated, what did not, and the C-4 to C-2 mapping table
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Journal_Archive_Search_Results_2025-01-14.pdf" class="document-link" target="_blank">
+                    Journal_Archive_Search_Results_2025-01-14.pdf — 
+search parameters, result counts, and the authentication section
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Division_Supplemental_Production_Index_2025-01-22.pdf" class="document-link" target="_blank">
+                    Division_Supplemental_Production_Index_2025-01-22.pdf — Docs 1–13 plus the note on the earlier production
+                </a>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Present-Day Proceeding</h2>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_OIP_3-21987_2024-02-08.pdf" class="document-link" target="_blank">
+                    Marchwood_OIP_3-21987_2024-02-08.pdf — order instituting proceedings
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Motion_Summary_Disposition_2024-11-12.pdf" class="document-link" target="_blank">
+                    Marchwood_Motion_Summary_Disposition_2024-11-12.pdf — the motion built on the Division's own production
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Division_Opposition_Summary_Disposition_2025-02-03.pdf" class="document-link" target="_blank">
+                    Division_Opposition_Summary_Disposition_2025-02-03.pdf — the rebuttal in four points
+                </a>
+                
+                <a href="https://lab4-mcp.mxhero.com/dashboard/Marchwood_Settled_Order_2025-03-14.pdf" class="document-link" target="_blank">
+                    Marchwood_Settled_Order_2025-03-14.pdf — $2,150,000, disgorgement measured against the 138 covered accounts
+                </a>
+                
+            </div>
+            
+        </div>
+
+        
+        <div id="next-steps" class="tab-content">
+            
+            <div class="section">
+                <h2 class="section-title">Engineering Actions</h2>
+
+                
+                <div class="action-item priority-high">
+                    <div>
+                        <strong>Enforce identifier pinning in agent configuration</strong><br>
+                        <span style="color: #dc3545;">HIGH PRIORITY</span><br>
+                        The Pin parameter is the single largest 
+determinant of retrieval quality observed in this run. Left to model 
+discretion it will sometimes be omitted, and when it is, results are 
+dominated by vocabulary-proximate bulk traffic. Consider making it 
+non-optional whenever a query contains a document, matter or case 
+identifier, and carrying it forward automatically on follow-up searches 
+within a conversation.
+                    </div>
+                </div>
+                
+                <div class="action-item priority-high">
+                    <div>
+                        <strong>Instrument the missingRelated recovery path</strong><br>
+                        <span style="color: #dc3545;">RECOMMENDED</span><br>
+                        One required document never ranked into any 
+result set but was recovered because the connector disclosed it as 
+thread-related. This channel converted a partial recall score into a 
+full one. Worth confirming that agents reliably act on missingRelated 
+rather than treating a result set as complete, and worth measuring how 
+often it is the sole path to a required document.
+                    </div>
+                </div>
+                
+                <div class="action-item priority-medium">
+                    <div>
+                        <strong>Review transport size-limit behaviour</strong><br>
+                        <span style="color: #ffc107;">MONITOR</span><br>
+                        Two searches dropped attachment text or reduced 
+messages to header-only stubs to fit response limits. The connector 
+disclosed each truncation, which is the right behaviour, but a query 
+whose answer sits inside a truncated body would require a second fetch 
+that an agent may not know to make. Consider whether the truncation 
+notice should be more directive.
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Benchmark Maintenance</h2>
+
+                
+                <div class="action-item priority-low">
+                    <div>
+                        <strong>Investigate two bonus items that did not surface</strong><br>
+                        <span style="color: #28a745;">LOW IMPACT</span><br>
+                        Two supporting messages — the numbering-scheme 
+notice that explains the file-number collision, and the message where 
+the 2013 precedent re-surfaces from the archive index — did not rank in 
+this run. Neither is scored as required and neither affected the 
+outcome, but both are useful demo colour. Worth checking whether they 
+are reachable with different phrasing or genuinely under-ranked.
+                    </div>
+                </div>
+                
+                <div class="action-item priority-low">
+                    <div>
+                        <strong>Preserve the deliberate in-world miscount</strong><br>
+                        <span style="color: #28a745;">NO ACTION</span><br>
+                        One message describes the recovered sequence as 
+eleven documents where the production index correctly lists twelve. This
+ is intentional — real productions contain human miscounts — and an 
+evaluator that notices it is behaving correctly. It was caught in this 
+run. Do not 'fix' it.
+                    </div>
+                </div>
+                
+                <div class="action-item priority-medium">
+                    <div>
+                        <strong>Re-run before each customer demo</strong><br>
+                        <span style="color: #ffc107;">ONGOING</span><br>
+                        This is the third independent run. Scoring the 
+same four queries before a live demo gives an objective pass/fail gate 
+rather than a subjective impression, and detects regressions in ranking 
+behaviour that would otherwise surface in front of a prospect.
+                    </div>
+                </div>
+                
+            </div>
+            
+
+            
+            <div class="section">
+                <h2 class="section-title">Key Strategic Insights</h2>
+                
+                <div class="info-card strength">
+                    <h3>The claim is now falsifiable, which is the point</h3>
+                    <p>The commercial argument — that an email archive 
+answers questions a system of record gets wrong — is easy to assert and 
+hard to prove. This benchmark converts it into a score with a defined 
+pass condition. A prospect's technical evaluator can be handed the 
+grading key and told to check the work.</p>
+                    
+                </div>
+                
+                <div class="info-card strength">
+                    <h3>The demo is won on the decoys, not the volume</h3>
+                    <p>Bulk filler supplies a realistic denominator but 
+does not compete for top results. Every decisive moment in this run 
+turned on declining a near-identical look-alike: a letter two days 
+earlier that expired, a second matter with the same number, a firm with 
+the same name. Effort in corpus construction should stay concentrated 
+there.</p>
+                    
+                </div>
+                
+                <div class="info-card strength">
+                    <h3>Self-disclosure beat ranking on the hardest query</h3>
+                    <p>On the query designed to force a collision, what 
+saved the answer was not that the right documents ranked higher — it was
+ that the connector volunteered the ambiguity in its own response 
+metadata before an answer was drafted. This is a differentiating 
+behaviour and is worth surfacing explicitly in demos rather than leaving
+ it as background.</p>
+                    
+                </div>
+                
+                <div class="info-card urgent">
+                    <h3>One dependency sits between this result and a bad demo</h3>
+                    <p>The Pin parameter. With it, the answer is at rank
+ 1. Without it, 96% of a result set was noise. A live demo driven by an 
+agent that omits it on one question will look materially worse than this
+ scorecard suggests. This is a configuration risk, not a 
+retrieval-quality risk, and it is cheap to close.</p>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    let originalTabsHTML = "";
+
+    function showTab(tabName, evt) {
+        
+        if (document.body.classList.contains('continuous')) {
+            const el = document.getElementById(tabName);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (evt) evt.preventDefault();
+            return;
+        }
+
+        
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+
+        
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        
+        document.getElementById(tabName).classList.add('active');
+
+        
+        if (evt && evt.target) {
+            evt.target.classList.add('active');
+        }
+    }
+
+    function buildTOCFromTabs() {
+        const tabsEl = document.querySelector('.tabs');
+        if (!tabsEl) return;
+
+        if (!originalTabsHTML) {
+            originalTabsHTML = tabsEl.innerHTML;
+        }
+
+        
+        const buttons = Array.from(tabsEl.querySelectorAll('button.tab'));
+        const items = buttons.map(btn => {
+            const label = (btn.textContent || '').trim();
+            const match = (btn.getAttribute('onclick') || '').match(/showTab\('([^']+)'/);
+            const id = match ? match[1] : "";
+            return { label, id };
+        }).filter(x => x.label && x.id);
+
+        
+        if (items.length === 0) {
+            const labelToId = {
+                'Overview': 'overview',
+                'Timeline': 'timeline',
+                'Contacts': 'contacts',
+                'Emails': 'emails',
+                'Documents': 'documents',
+                'Next Steps': 'next-steps'
+            };
+            buttons.forEach(btn => {
+                const label = (btn.textContent || '').trim();
+                const id = labelToId[label];
+                if (label && id) items.push({ label, id });
+            });
+        }
+
+        const linksHtml = items.map(x => {
+            return `<a class="toc-link" href="#${x.id}">${x.label}</a>`;
+        }).join('');
+
+        tabsEl.innerHTML = `<span class="toc-title">Table of Contents</span>${linksHtml}`;
+    }
+
+    function restoreTabbedTabs() {
+        const tabsEl = document.querySelector('.tabs');
+        if (!tabsEl) return;
+        if (originalTabsHTML) {
+            tabsEl.innerHTML = originalTabsHTML;
+        }
+    }
+
+    function setContinuousMode(on) {
+        const toggleEl = document.getElementById('layoutToggle');
+        if (on) {
+            document.body.classList.add('continuous');
+            buildTOCFromTabs();
+
+            
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.add('active'));
+
+            if (toggleEl) toggleEl.textContent = 'Switch to Tabbed View';
+        } else {
+            document.body.classList.remove('continuous');
+            restoreTabbedTabs();
+
+            
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            const overview = document.getElementById('overview');
+            if (overview) overview.classList.add('active');
+
+            if (toggleEl) toggleEl.textContent = 'Switch to Continuous View (for printing)';
+        }
+    }
+
+    
+    (function initLayoutToggle() {
+        const toggleEl = document.getElementById('layoutToggle');
+        if (!toggleEl) return;
+
+        toggleEl.addEventListener('click', function (e) {
+            e.preventDefault();
+            const isContinuous = document.body.classList.contains('continuous');
+            setContinuousMode(!isContinuous);
+        });
+
+        
+        window.addEventListener('beforeprint', function () {
+            setContinuousMode(true);
+            const pd = document.getElementById('printDate');
+            if (pd) {
+                pd.textContent = new Date().toLocaleString();
+            }
+        });
+
+        
+        const pd = document.getElementById('printDate');
+        if (pd) {
+            pd.textContent = new Date().toLocaleString();
+        }
+    })();
+</script>
+
+</body></html>
