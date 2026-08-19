@@ -1,0 +1,37 @@
+Mime-Version: 1.0
+Message-ID: <1787107789987150000.72dcba403c2bb117.20@localhost>
+References: <1787107789987150000.4b256dff1da23318.19@localhost>
+In-Reply-To: <1787107789987150000.4b256dff1da23318.19@localhost>
+From: "Priya Raghunathan" <priya.raghunathan@sec.gov>
+To: "Marcus Ellenbogen" <marcus.ellenbogen@sec.gov>
+Cc: "Rosalind Achterberg" <rosalind.achterberg@sec.gov>
+Subject: RE: EXAMTRAC decommissioning - SENTRY cutover is complete
+Date: Thu, 14 Apr 2016 10:57:00 -0400
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Marcus,<br />
+<br />
+Following up on the question I raised on the migration call, and copying Ro=
+salind because it is her branch that is affected.<br />
+<br />
+The legacy disposition code set had four closing values. C-1 closed with no=
+ deficiencies, C-2 closed no further action, C-3 referred, and C-4 closed o=
+n registrant undertaking. SENTRY's code set has three. There is no C-4.<br =
+/>
+<br />
+Your answer on the call was that C-4 records were mapped to C-2 because bot=
+h are non-referral closures. I understand why that is the obvious mapping a=
+nd I want to flag what it costs. C-4 exists precisely to say that the regis=
+trant promised the staff something in writing and that the promise is open =
+for verification at the next examination. C-2 says only that the staff foun=
+d nothing worth following up. Mapping C-4 onto it does not lose a label, it=
+ deletes the one fact the next examiner needs, and it does so on exactly th=
+e examinations whose correspondence also did not migrate. After the migrati=
+on there is no field in SENTRY and no document in SENTRY that would tell an=
+ examiner an undertaking exists.<br />
+<br />
+Can we get C-4 restored as a distinct value, or at minimum a flag on the mi=
+grated records?<br />
+<br />
+Priya

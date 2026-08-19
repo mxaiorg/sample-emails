@@ -1,0 +1,37 @@
+Mime-Version: 1.0
+References: <1787141547896987000.77f3b3c8a96cca59.104@localhost>
+In-Reply-To: <1787141547896987000.77f3b3c8a96cca59.104@localhost>
+From: "Marcus Ellenbogen" <marcus.ellenbogen@sec.gov>
+To: "Beatrix Follansbee" <beatrix.follansbee@sec.gov>
+Cc: "Yolanda Bricenio" <yolanda.bricenio@sec.gov>
+Subject: RE: 2012-0118 - our record says one thing and the registrant's
+ file says another
+Date: Fri, 25 Mar 2022 16:07:00 -0400
+Message-ID: <1787141547896987000.2a8fd2bfd1b9971c.106@localhost>
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Beatrix,<br />
+<br />
+You have found the disposition mapping and you are the third person to find=
+ it independently.<br />
+<br />
+The legacy code set had four closing values, C-1 through C-4. C-4 meant clo=
+sed on registrant undertaking. SENTRY has three closing values and no equiv=
+alent of C-4, so at cutover every C-4 was written as C-2, closed no further=
+ action, on the reasoning that neither is a referral. That is why 2012-0118=
+ reads the way it does. The underlying EXAMTRAC extract still carries the o=
+riginal value, and I have pulled it for you: 2012-0118 was closed C-4 on Oc=
+tober 3, 2012.<br />
+<br />
+It is not confined to your matter. I ran the extract against the Philadelph=
+ia legacy series and Delamere Quill's 2011-0417 is the same shape - C-4 in =
+EXAMTRAC, C-2 in SENTRY, and a closing letter that recites corrective actio=
+n. There are eleven others in this office alone.<br />
+<br />
+The change request is SENTRY-2214 and it was closed will-not-fix in 2016 as=
+ low impact. I am reopening it with your example attached, because "low imp=
+act" was always a statement about the migration budget and never a statemen=
+t about the records.<br />
+<br />
+Marcus Ellenbogen

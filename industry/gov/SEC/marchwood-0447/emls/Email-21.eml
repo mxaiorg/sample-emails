@@ -1,0 +1,34 @@
+Mime-Version: 1.0
+Cc: "Rosalind Achterberg" <rosalind.achterberg@sec.gov>
+Subject: RE: EXAMTRAC decommissioning - SENTRY cutover is complete
+Date: Thu, 14 Apr 2016 16:05:00 -0400
+Message-ID: <1787107789987151000.68449bcc06cb9ed5.21@localhost>
+References: <1787107789987150000.4b256dff1da23318.19@localhost>
+ <1787107789987150000.72dcba403c2bb117.20@localhost>
+In-Reply-To: <1787107789987150000.72dcba403c2bb117.20@localhost>
+From: "Marcus Ellenbogen" <marcus.ellenbogen@sec.gov>
+To: "Priya Raghunathan" <priya.raghunathan@sec.gov>
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Priya,<br />
+<br />
+I had already logged it as SENTRY-2214 after the migration call, and I took=
+ it to the change board this morning. The board closed it as low impact, wi=
+ll not fix. The reasoning recorded is that the code set was approved as par=
+t of the requirements baseline, that a schema change post-cutover is out of=
+ scope for the migration budget, and that the affected population is histor=
+ical and closed.<br />
+<br />
+For what it is worth I said in the meeting that "closed" was carrying more =
+weight in that sentence than it could bear. The board's answer was that if =
+an examiner needs to know what happened on a pre-2014 examination they can =
+read the file. I did not have a good response to that at the time. I do now=
+, which is that for pre-2014 examinations there is no file in SENTRY to rea=
+d.<br />
+<br />
+I am recording your note in the ticket so it is on the record. If the branc=
+h wants to escalate it, the route is through the division's data governance=
+ representative.<br />
+<br />
+Marcus

@@ -1,0 +1,31 @@
+Mime-Version: 1.0
+To: "Percival Rathbone" <percival.rathbone@sec.gov>
+Cc: "Han-Wei Loh" <hanwei.loh@sec.gov>
+Subject: Search behavior on legacy examination numbers
+Date: Tue, 08 Oct 2024 15:26:00 -0400
+Message-ID: <1787141547896992000.479e8918c388e5d1.129@localhost>
+From: "Marcus Ellenbogen" <marcus.ellenbogen@sec.gov>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+Percival,<br />
+<br />
+I ran the test you asked for. A SENTRY search on the bare string 2011-0447 =
+returns four matters: Philadelphia's 2011-0447, Denver's 2011-0447, Boston'=
+s 2010-0447 and Fort Worth's 2012-0447. The third and fourth come back beca=
+use the tokenizer splits on the hyphen and the sequence portion matches, an=
+d the relevance ranking puts them above nothing because there is nothing el=
+se to rank them against.<br />
+<br />
+The system does not warn the user that the number is ambiguous, because at =
+migration the office code was written into a separate field that the quick =
+search does not read. It is in the record. It is just not in the query.<br =
+/>
+<br />
+I can add the office code to the quick search index. It is a schema change,=
+ so it needs a ticket and a maintenance window, and I would rather do it no=
+w than after somebody files something on the strength of the wrong file.<br=
+ />
+<br />
+Marcus Ellenbogen<br />
+Office of Information Technology
