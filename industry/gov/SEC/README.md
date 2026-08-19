@@ -86,4 +86,4 @@ default agent behavior rather than leaving to model discretion.
 
 All email and attachment contect used in this test, including grading key and build notes can be found in the following GitHub repository:
 
-[link](http://mxhero.com)
+[GitHub - gov/SEC](https://github.com/mxaiorg/sample-emails/tree/main/industry/gov/SEC)
