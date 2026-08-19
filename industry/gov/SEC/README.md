@@ -22,12 +22,18 @@ configuration rather than leaving it to model discretion.
 
 ## What was tested
 
+### The Story
+
+In 2011 SEC examiners found that an investment firm, Marchwood, was reaching into client accounts to pull out its own fees without the annual surprise audit that practice requires. Rather than punish the firm, the examiners accepted a written promise from its compliance officer: we've stopped, we won't restart, and this promise has no end date and covers any accounts we buy in future. Five years later the SEC moved its inspection records to a new system — and for older cases only the summary line came across, with the status code meaning *"closed because the firm promised us something"* collapsed into one that reads *"closed, nothing found."* So when Marchwood restarted the practice and was charged in 2024, the firm asked for the 2011 file, received a record that appeared to say the SEC had looked and passed it, and moved to have the case thrown out — with roughly \$4.3 million riding on the outcome. What saved it was email. The SEC's mail journal archive had been left out of the migration and untouched since a 2011 freeze on records destruction, and a one-day search produced the original signed promise plus something better: a 2013 letter in which Marchwood, unprompted and with no inspection open, applied that promise to a book of accounts it had just purchased and paid for an audit to cover eleven days of exposure. Nobody does that unless they know they're bound. The motion was withdrawn and the firm settled for \$2,150,000 — a case won by two letters that were in neither side's document system and in the email archive the entire time.
+
+### The Tools
+
 mxHERO's `email_search` connector was scored against a purpose-built adversarial
 benchmark: a 6,000-message synthetic email archive modeled on an SEC enforcement
 matter. Buried in it is a single decisive document — a June 2, 2011 letter in
 which a registrant's compliance officer accepts a finding and gives a written
 undertaking "without an expiration date." Fourteen years later, that letter is
-the difference between a $4.3 million enforcement action collapsing and a $2.15
+the difference between a \$4.3 million enforcement action collapsing and a \$2.15
 million settlement.
 
 The archive is built to punish retrieval that merely looks good. Around the
@@ -82,8 +88,18 @@ the two relevant hits survived only because the date filter was narrow. The same
 question with `Pin` set returns the answer at rank 1. This is worth encoding as
 default agent behavior rather than leaving to model discretion.
 
-## Sources
+## Sources & Assets
 
 All email and attachment contect used in this test, including grading key and build notes can be found in the following GitHub repository:
 
 [GitHub - gov/SEC](https://github.com/mxaiorg/sample-emails/tree/main/industry/gov/SEC)
+
+### Interactive dashboard
+
+An interactive dashboard of this benchmark can be found at the following URL:
+
+[Interactive dashboard](https://github.com/mxaiorg/sample-emails/blob/main/industry/gov/SEC/mxMCP%20Retrieval%20Benchmark%20%E2%80%94%20Marchwood%202011-0447.html)
+
+It is a standalone dashboard that can be used to explore the benchmark and its results.
+
+Generated with the mxMCP Dashboard MCP v2
