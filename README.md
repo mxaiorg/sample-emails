@@ -1,9 +1,9 @@
 # mxHERO Sample Email Repository
 
-> ### Disclaimer
-> All sample emails stored in this repository are provided for reference and learning purposes only.
-> 
-> These emails are synthetically generated. Any resemblance to real emails, individuals, or organizations is purely coincidental.
+## Disclaimer
+All sample emails stored in this repository are provided for reference and learning purposes only.
+ 
+These emails are synthetically generated. Any resemblance to real emails, individuals, or organizations is purely coincidental.
 
 ## About
 
