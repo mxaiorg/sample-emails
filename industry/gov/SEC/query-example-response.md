@@ -1,15 +1,15 @@
 # Overview
 
-The following is an example response to a query posed against this test corpus.
+The following is an example response to a query posed against the test email corpus via mxHERO's Mail2Cloud mxMCP.
 
 **Date:** August 19, 2026  
 **Model:** Anthropic Claude Opus 5  
 
-## Query
+## User Query
 > Did Marchwood ever agree in writing to stop debiting advisory fees directly from client accounts, or did the 2011 examination close with no findings? Examine the email history with the mxMCP tool.
 
 
-## Response
+## LLM Response
 Marchwood agreed in writing — twice. The "closed with no findings" version is wrong, and the archive shows exactly where that error came from.
 
 **The 2011 examination did have findings.** Examination 2011-0447 (Philadelphia Regional Office, period 2009–2010) produced a deficiency letter dated April 20, 2011 with six items. Item 4 was custody: Section 6(c) of Marchwood's standard advisory agreement let it instruct client custodians to withdraw or transfer funds or securities — not limited to its advisory fee — across 214 accounts holding ~\$198M. That made it custody under Rule 206(4)-2(d)(2)(ii), put the Rule 206(4)-2(b)(3) exception out of reach, and meant the required surprise examination for 2010 was never obtained.
