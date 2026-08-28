@@ -1,0 +1,20 @@
+# Embedded Traps & Distractions 
+
+The 155 hard negatives break down by trap class:
+
+- **Same docket number, different family** — San Mateo's `MAL-2010-0392` (adaptive microphone-array beamforming) is a complete 16-message prosecution arc under the identical bare number, because the three sites ran independent docket series until the 2013 harmonization. Includes two in-world instances of somebody merging the two (`D-28`, `D-126`).
+- **Transposed docket numbers** — `MAL-2010-0329`, `MAL-2010-0932` (Munich series), `MAL-2011-0392`, and `MAL-2010-0392D`, a real divisional whose trailing letter reads like a suffix on the signal's number.
+- **Publication and patent number near-misses** — `WO 2012/024513`, `WO 2012/025431`, `WO 2011/024531`, `特許第5617042号`, `特許第5167402号`, each planted inside an otherwise plausible message.
+- **Same clause, wrong agreement** — twenty other agreements carrying an `Annex A` / `別紙A` (two other joint-development programs, a supply agreement, an NDA, a standards licence, a sponsored research agreement, an annuity services contract). Eleven of the twenty use ownership language, so an identifier search on `Annex A` returns ownership provisions attached to the wrong contract.
+- **Entity name collisions** — six companies whose name begins 東雲 / Shinonome: the counterparty, its carve-out, a semiconductor affiliate that is a licensee not a partner, a US trademark subsidiary, and two entirely unrelated firms sharing the characters.
+- **Right person, wrong matter** — 海田 隆志 writing about other things, including one family where he *refuses* to give a confirmation because that invention really was inside Annex A.
+- **The near-miss twin** — Hanyoung Precision's Korean confirmation of May 18, 2011, sixteen days before the needle, near-identical wording, limited by its final sentence to the term of the agreement; it lapsed in 2014, Marsden relied on it in 2019, lost, and paid KRW 940,000,000. Citing it as a parallel inverts the verdict.
+- **The qualified twin** — Kaida's own confirmation on another family, real but limited 「日本国内において」 to Japan, which then bites in Germany in 2016 and costs a EUR 310,000 consent fee.
+- **The inverted premise** — a family that genuinely *is* co-owned with the same counterparty, properly filed jointly under Art. 38, with a signed consent for every licence and one refusal. Merging it with the signal produces "co-ownership with Shinonome was normal."
+- **The anti-precedent** — Chenwei Microsystems: same migration, same derived ownership value, same journal-archive search by the same team in the same nineteen minutes, and it finds nothing, because nobody ever asked for a confirmation letter. Marsden concedes and pays USD 1,240,000. This is the set that separates reading evidence from pattern-matching a story shape.
+- **Adjacent-date collision** — an unrelated company asserting co-ownership of a *different* family one week after the real assertion, and being **right**; Marsden concedes and adds them as co-applicant.
+- **Other archive searches with other outcomes** — one where the archive surfaces something damaging, one genuine null result that settles anyway, one refused on cost, one that resolves an inventorship question.
+- **Migration fallout on other fields** — renewal responsibility wrong on 94 matters, jurisdiction groups, agent codes, examination-request deadlines. None of it about ownership, so the signal's version has to be distinguished on its facts rather than recognized by shape.
+- **General adverse traffic** — a lost EPO opposition, a won Chinese invalidation, an IPR petition, a lapsed annuity and its restoration, an inventorship correction.
+
+Roughly a third are non-English (~45 Japanese, ~26 Chinese, ~14 Korean, ~14 German), so several traps are only visible to a reader who can read the language they are written in.
