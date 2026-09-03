@@ -1,0 +1,39 @@
+Mime-Version: 1.0
+Subject: NOV-2119 - closed-matter Scope Notes not carried into Novarra -
+ ticket closed, works as designed - for your records
+Date: Tue, 15 Mar 2016 15:56:00 -0400
+Message-ID: <1788248173695773000.7b6b2dd009f9fde.23@localhost>
+References: <1788248173695773000.2c1b84aed967d703.22@localhost>
+In-Reply-To: <1788248173695773000.2c1b84aed967d703.22@localhost>
+From: "Anika Chaudhry" <a.chaudhry@prescottvane.com>
+To: "Howell Grady" <h.grady@prescottvane.com>
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Howell,<br />
+<br />
+Closing the loop on NOV-2119 so Records has the decision in writing.<br />
+<br />
+The ticket: a partner noticed that the free-text "Scope Note" field we main=
+tained on Casebridge matter records did not carry into Novarra. Confirmed, =
+and it is not a defect - Novarra has no free-text scope field. Its "Matter =
+Scope" is a controlled description populated at migration from the matter's=
+ engagement-letter document class: for each migrated matter, the loader too=
+k the description of the representation from the profiled engagement letter=
+ and wrote it to the field. Where a scope changed after the engagement lett=
+er, that change is reflected only if it exists as a profiled document (an a=
+mendment or a supplemental letter). Free-text notes and anything recorded o=
+nly in pre-2014 correspondence are not reflected.<br />
+<br />
+The vendor's position, which the steering committee accepted, is that the e=
+ngagement letter is the authoritative scope document and the field works as=
+ designed. The ticket is closed on that basis. Estimated population affecte=
+d: closed matters opened before 2014 with a post-engagement scope note - a =
+few hundred, none active.<br />
+<br />
+I flagged, and the minutes record, that for those matters Novarra's scope d=
+escription can be less complete than what the file actually shows. Anyone r=
+elying on the field for a pre-2014 matter should verify against the underly=
+ing record - which for that era means the journal archive.<br />
+<br />
+Anika
