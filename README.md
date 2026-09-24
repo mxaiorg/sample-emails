@@ -13,6 +13,10 @@ The repository is composed of collections of emails separated by industry and us
 
 You are free to use these emails for your own testing and benchmark purposes.
 
+### Usage
+
+Emails for testing and benchmarking purposes are initially generated in markdown files. Emails (emls) are then generated from these markdown files using tools and sent to an email account for processing and analysis by Mail2Cloud and mxMCP.
+
 ### mxMCP
 
 mxMCP is a component of the mxHERO Advanced platform designed to process and analyze emails. It is responsible for extracting relevant information from emails and making it available for further processing and analysis. The test results included here are based on mxMCP.

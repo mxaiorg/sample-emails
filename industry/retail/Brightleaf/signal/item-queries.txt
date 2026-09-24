@@ -1,0 +1,10 @@
+Email-2|L0 temperature log|Millbrook monthly temperature log transmittal exception product temperature
+Email-5|L1 the needle|Millbrook ice cream aisle 12 soft again second time this month case looks fine
+Email-6|L2 ask 1|Millbrook put in a service order through the portal and we will get someone out
+Email-10|L3 district|Millbrook frozen shrink high three weeks running Dorsey thinks it is the cases
+Email-14|L4 the bad fact|Millbrook discharge running high thirty degrees over valve on its way out needs scheduling
+Email-15|L5 parked|Millbrook put it in the notes and we will pick it up when they open something
+Email-16|L6 dumping|Millbrook we dumped two pallets of frozen last week can you just send somebody
+Email-19|L7 shrink report|Millbrook frozen shrink 4.1 percent against chain average rule out equipment before theft
+Email-21|L8 service order|Millbrook Store 14 Rack B-3 service request intermittent product temperature excursions
+Email-26|L9 the failure|Millbrook Store 14 total loss on B-3 overnight aisle 12 forty-one degrees walk-in thirty-eight
