@@ -19,6 +19,10 @@ Emails for testing and benchmarking purposes are initially generated in markdown
 
 ### mxMCP
 
+_Remote MCP_
+
 mxMCP is a component of the mxHERO Advanced platform designed to process and analyze emails. It is responsible for extracting relevant information from emails and making it available for further processing and analysis. The test results included here are based on mxMCP.
 
 You can learn more about mxMCP and its capabilities at [https://mxhero.com/docs/mxmcp/](https://mxhero.com/ai-to-email-gateway/).
+
+For any questions or inquiries, please contact us at [support@mxhero.com](mailto:support@mxhero.com).
